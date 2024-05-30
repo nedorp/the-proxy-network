@@ -80,10 +80,6 @@ public class RouteStepChunk implements Serializable {
         // get the symmetric key and unpack
         try {
 
-            // TODO Fare una cache di connessioni aperte verso fratelli proxy. E' probabile che abbia già
-            // forwardato verso questo ip
-            // Sfruttare connessione aperta così TCP è già in finestra grassa
-
             System.out.println("Forwarding to " + unwrappedMessage.IP);
 
             Socket toForwardSocket = new Socket(unwrappedMessage.IP, unwrappedMessage.port, myAddress, 0);
@@ -98,9 +94,6 @@ public class RouteStepChunk implements Serializable {
                 System.out.println("Not Connected!");
             }
 
-            // TODO Implementare ACK del ricevitore per poi chiudere, oppure lasciare il socket aperto con timeout
-            // toForwardSocket.close();
-            // System.out.println("Closed Socket");
             return null;
 
         } catch (IOException e) {
